@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔋 Plug & Save — Dashboard IA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>
+                <i class="fas fa-plug"></i>
+                Plug & Save
+                <span class="badge">IA Active</span>
+            </h1>
+            <p class="subtitle">Optimisation intelligente de la recharge VE</p>
+            <div class="status-bar">
+                <span class="status-dot"></span>
+                <span id="serverStatus">Serveur: Connecté</span>
+                <span class="separator">|</span>
+                <span id="lastUpdate">Dernière mise à jour: --:--:--</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Véhicule -->
+        <section class="card">
+            <h2><i class="fas fa-car"></i> Véhicule Connecté</h2>
+            <div class="vehicle-grid">
+                <div class="metric">
+                    <span class="metric-label">SOC Batterie</span>
+                    <span class="metric-value" id="socValue">--%</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="socProgress"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Température</span>
+                    <span class="metric-value" id="tempValue">--°C</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Heure Détection</span>
+                    <span class="metric-value" id="hourValue">--h</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Zone</span>
+                    <span class="metric-value" id="zoneValue">--</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommandation IA -->
+        <section class="card recommendation-card">
+            <h2><i class="fas fa-brain"></i> Recommandation IA</h2>
+            <div class="recommendation-display" id="recommendationDisplay">
+                <div class="recommendation-icon">
+                    <i class="fas fa-hourglass"></i>
+                </div>
+                <div class="recommendation-text">
+                    <span class="recommendation-message" id="recMessage">En attente de données...</span>
+                    <span class="recommendation-subtitle" id="recSubtitle">Le véhicule n'a pas encore envoyé de données</span>
+                </div>
+            </div>
+            <div class="recommendation-details" id="recDetails" style="display: none;">
+                <div class="detail-row">
+                    <strong>⏰ Heure optimale:</strong>
+                    <span id="bestHour">--h</span>
+                </div>
+                <div class="detail-row">
+                    <strong>🌱 Économie CO₂:</strong>
+                    <span id="co2Saving">--g</span>
+                </div>
+                <div class="detail-row">
+                    <strong>📊 Score optimal:</strong>
+                    <span id="optimalScore">--</span>
+                </div>
+                <div class="detail-row">
+                    <strong>⚡ Énergie estimée:</strong>
+                    <span id="energyEstimate">--kWh</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="card">
+            <h2><i class="fas fa-chart-line"></i> Prochaines 12 Heures</h2>
+            <div class="timeline" id="timeline">
+                <div class="timeline-placeholder">En attente de prédictions...</div>
+            </div>
+        </section>
+
+        <!-- Test Manuel -->
+        <section class="card">
+            <h2><i class="fas fa-flask"></i> Test Manuel</h2>
+            <form id="testForm" class="form-grid">
+                <div class="form-group">
+                    <label>SOC (%):</label>
+                    <input type="number" id="testSoc" value="50" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label>Heure (0-23):</label>
+                    <input type="number" id="testHour" value="12" min="0" max="23" required>
+                </div>
+                <div class="form-group">
+                    <label>Temp (°C):</label>
+                    <input type="number" id="testTemp" value="22" min="-10" max="50" required>
+                </div>
+                <div class="form-group">
+                    <label>Zone:</label>
+                    <select id="testZone">
+                        <option value="0">Rural</option>
+                        <option value="1" selected>Péri-urbain</option>
+                        <option value="2">Urbain</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display: flex; align-items: flex-end;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Envoyer pour Prédiction
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Logs -->
+        <section class="card">
+            <h2><i class="fas fa-terminal"></i> Logs Récents</h2>
+            <div class="logs" id="logs">
+                <div class="log-entry info">Dashboard initialisé...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>🔋 Plug & Save — Projet IoT + IA pour la Mobilité Verte</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

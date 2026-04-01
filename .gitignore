@@ -1,0 +1,43 @@
+# ── Environnement virtuel ──────────────────────────────
+venv/
+env/
+.venv/
+ENV/
+
+# ── Python ────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+*.egg-info/
+dist/
+build/
+
+# ── Modèles ML (si > 100MB, sinon les garder) ─────────
+# *.joblib
+# models/
+
+# ── Jupyter / Colab ───────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Système d'exploitation ────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ───────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── Arduino ───────────────────────────────────────────
+*.elf
+*.hex
+*.bin
+build/
+
+# ── Logs ──────────────────────────────────────────────
+*.log
+mosquitto.log"
